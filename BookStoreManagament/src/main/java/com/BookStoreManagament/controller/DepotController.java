@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/d1")
+@RequestMapping("/v1/depot-api")
 public class DepotController {
 
     private final DepotService depotService;
@@ -28,21 +28,21 @@ public class DepotController {
         depotService.addBookToDepot(request);
     }
 
-    @GetMapping("/allbooks-sortby-initialprice-desc")
+    @GetMapping("/allbooks-sortbyinitialprice-desc")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllDepotsBooksResponseDto> getAllDepotsBooksBySortInitialPriceHighToLow() {
         return depotService.getAllDepotsBooksBySortInitialPriceHighToLow();
     }
 
-    @GetMapping("/allbooks-sortby-initialprice")
+    @GetMapping("/allbooks-sortbyinitialprice")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllDepotsBooksResponseDto> getAllDepotsBooksBySortInitialPriceLowToHigh() {
         return depotService.getAllDepotsBooksBySortInitialPriceLowToHigh();
     }
 
-    @GetMapping("/allbooks-filterby-importdate")
+    @GetMapping("/allbooks-filterbyimportdate")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllDepotsBooksResponseDto> getAllDepotsBooksFilterByImportDateWithBetween

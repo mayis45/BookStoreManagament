@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/v1/f1")
+@RequestMapping("/v1/follower-api")
 public class FollowerController {
 
     private final FollowersService followersService;

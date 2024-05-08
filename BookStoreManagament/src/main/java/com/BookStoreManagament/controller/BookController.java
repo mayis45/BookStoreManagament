@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/b1")
+@RequestMapping("/v1/book-api")
 public class BookController {
 
     private final BookService bookService;
@@ -20,21 +20,21 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/add-book")
+    @PostMapping("/add-book")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public void addBook(@RequestBody AddBookRequestDto request){
         bookService.addBook(request);
     }
 
-    @GetMapping("/totalbookcountby-id/{publisherId}")
+    @GetMapping("/totalbookcount/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public BigDecimal getTotalBookCountByPublisherId(@PathVariable String publisherId){
         return bookService.getTotalBookCountByPublisherId(publisherId);
     }
 
-    @GetMapping("/mostpopularbookby-id/{publisherId}")
+    @GetMapping("/mostpopularbook/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public MostPopularBookResponseDto getMostPopularBookByPublisherId(@PathVariable String publisherId){
@@ -51,56 +51,56 @@ public class BookController {
         return bookService.getPublishersAllBooksByCategoryId(categoryId, publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-sortbyprice-desc/{publisherId}")
+    @GetMapping("/allbooksby-sortbyprice-desc/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<FilterAllBooksResponseDto> getPublishersAllBooksSortByPriceHighToLow(@PathVariable String publisherId){
         return bookService.getPublishersAllBooksSortByPriceHighToLow(publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-sortbyprice/{publisherId}")
+    @GetMapping("/allbooksby-sortbyprice/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<FilterAllBooksResponseDto> getPublishersAllBooksSortByPriceLowToHigh(@PathVariable String publisherId){
         return bookService.getPublishersAllBooksSortByPriceLowToHigh(publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-sortbydate/{publisherId}")
+    @GetMapping("/allbooksby-sortbydate/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<FilterAllBooksResponseDto> getPublishersAllBooksSortByPublishingDate(@PathVariable String publisherId){
         return bookService.getPublishersAllBooksSortByPublishingDate(publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-sortbysoldquantity-desc/{publisherId}")
+    @GetMapping("/allbooksby-sortbysoldquantity-desc/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<FilterAllBooksResponseDto> getPublishersAllBooksSortBySoldQuantityHighToLow(@PathVariable String publisherId){
         return bookService.getPublishersAllBooksSortBySoldQuantityHighToLow(publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-sortbysoldquantity/{publisherId}")
+    @GetMapping("/allbooksby-sortbysoldquantity/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<FilterAllBooksResponseDto> getPublishersAllBooksSortBySoldQuantityLowToHigh(@PathVariable String publisherId){
         return bookService.getPublishersAllBooksSortBySoldQuantityLowToHigh(publisherId);
     }
 
-    @GetMapping("/search-bookby-name/{bookName}")
+    @GetMapping("/searchbook/{bookName}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public SearchedBookResponseDto searchBookByName(@PathVariable String bookName){
         return bookService.searchBookByName(bookName);
     }
 
-    @GetMapping("/allbooksby-publisherid/{publisherId}")
+    @GetMapping("/allbooks/{publisherId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public List<AllBooksResponseDto> seeAllBooksByPublisherId(@PathVariable String publisherId){
         return bookService.seeAllBooksByPublisherId(publisherId);
     }
 
-    @GetMapping("/allbooksby-publisherid-pagination/{publisherId}")
+    @GetMapping("/allbooks-pagination/{publisherId}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public PageResponseDto seeAllBooksByPublisherIdWithPagination(
             @RequestParam(value = "page")  int page,

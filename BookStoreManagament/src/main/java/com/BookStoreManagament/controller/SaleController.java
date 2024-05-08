@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/s1")
+@RequestMapping("/v1/sale-api")
 public class SaleController {
 
     private final SaleService saleService;
@@ -20,7 +20,7 @@ public class SaleController {
         this.saleService = saleService;
     }
 
-    @GetMapping("/allsales-filterby-dateofpayment")
+    @GetMapping("/allsales-filterbydateofpayment")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesFilterByDateOfPaymentWithBetween(
@@ -30,49 +30,49 @@ public class SaleController {
         return saleService.getAllSalesFilterByDateOfPaymentWithBetween(request);
     }
 
-    @GetMapping("/allsales-sortby-totalprice-desc")
+    @GetMapping("/allsales-sortbytotalprice-desc")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesSortTotalPriceHighToLow(){
         return saleService.getAllSalesSortTotalPriceHighToLow();
     }
 
-    @GetMapping("/allsales-sortby-totalprice")
+    @GetMapping("/allsales-sortbytotalprice")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesSortTotalPriceLowToHigh(){
         return saleService.getAllSalesSortTotalPriceLowToHigh();
     }
 
-    @GetMapping("/allsales-sortby-totalprofit-desc")
+    @GetMapping("/allsales-sortbytotalprofit-desc")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesSortTotalProfitHighToLow(){
         return saleService.getAllSalesSortTotalProfitHighToLow();
     }
 
-    @GetMapping("/allsales-sortby-totalprofit")
+    @GetMapping("/allsales-sortbytotalprofit")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesSortTotalProfitLowToHigh(){
         return saleService.getAllSalesSortTotalProfitLowToHigh();
     }
 
-    @GetMapping("/allsales-sortby-dateofpayment")
+    @GetMapping("/allsales-sortbydateofpayment")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public List<AllSalesResponseDto> getAllSalesSortDateOfPaymentLowToHigh(){
         return saleService.getAllSalesSortDateOfPaymentLowToHigh();
     }
 
-    @GetMapping("/calculate-totalprofit")
+    @GetMapping("/totalprofit")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public BigDecimal calculateTotalProfitAllTime(){
         return saleService.calculateTotalProfitAllTime();
     }
 
-    @GetMapping("/calculate-totalprofit-filterby-dateofpayment")
+    @GetMapping("/totalprofit-filterbydateofpayment")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     public BigDecimal calculateTotalProfitBetweenDate(@RequestBody FilterBetweenByDateSaleRequestDto request){
